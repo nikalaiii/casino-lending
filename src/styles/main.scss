@@ -1,0 +1,385 @@
+@import "./variables";
+@import "./mixins.scss";
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background-image: url("/images/background.jpg");
+  background-size: cover;
+  background-attachment: fixed;
+  background-position: center;
+  margin: 0;
+  width: 100vw;
+}
+
+header {
+  width: 100vw;
+  margin: auto;
+  background-color: $color-blue-grey;
+}
+
+button {
+  cursor: pointer;
+  border: none;
+}
+
+h1,
+h2 {
+  margin: 0;
+}
+
+p {
+  @include set-font($font-national-park, 400, 18px); // було 15px
+  line-height: 1.6;
+  color: #fff;
+  margin-bottom: 1.5rem;
+}
+
+.main__title {
+  font-size: 42px;
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.main__content > *:not(:last-child) {
+  margin-bottom: 2.5rem;
+}
+
+.nav {
+  max-width: $content-max-width;
+  margin: auto;
+  padding: 8px;
+  width: 100%;
+  height: $nav-base-height;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  @include on-tablet {
+    padding: 0;
+    height: calc($nav-base-height * 2.5);
+    flex-direction: column;
+    justify-content: space-around;
+  }
+
+  &__logo-link {
+    display: flex;
+    align-items: center;
+    height: 100%;
+    text-decoration: none;
+
+    @include on-phone {
+      height: 50%;
+    }
+  }
+
+  &__logo {
+    min-width: 200px;
+    height: 90%;
+
+    @include on-tablet {
+      height: 40%;
+    }
+
+    @include on-phone {
+      max-width: 200px;
+    }
+  }
+
+  &__buttons {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    gap: 1.1rem;
+    justify-content: center;
+
+    @include on-phone {
+      order: 1;
+    }
+  }
+
+  &__button {
+    @include set-font($font-national-park, 800, clamp(0.8rem, 1.1vw, 1.1rem));
+    height: 95%;
+    min-width: clamp(5.5rem, 7vw, 8rem);
+    border-radius: 999px;
+    color: #fff;
+    transition: all 0.3s ease;
+
+    @include on-tablet {
+      max-height: 30px;
+    }
+
+    &--sign-up {
+      background-color: $color-light-purple;
+      box-shadow: 0 4px 0px darken($color-light-purple, 20);
+      &:hover {
+        box-shadow: 0 6px 0px darken($color-light-purple, 20);
+      }
+    }
+
+    &--login {
+      color: #000;
+      background-color: $color-light-blue;
+      box-shadow: 0 4px 0 darken($color-light-blue, 20);
+      &:hover {
+        box-shadow: 0 6px 0 darken($color-light-blue, 20);
+      }
+    }
+  }
+
+  &__links {
+    list-style: none;
+    display: flex;
+    height: 100%;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1.3rem;
+
+    @include on-phone {
+      order: 2;
+      margin: 0;
+      padding: 0;
+    }
+  }
+
+  &__link {
+    @include set-font($font-national-park, 400, 24px);
+    letter-spacing: 2px;
+    color: #fff;
+    position: relative;
+    display: inline-block;
+    text-decoration: none;
+
+    @include on-tablet {
+      font-size: 18px;
+    }
+
+    &::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -4px;
+      width: 0%;
+      height: 2px;
+      background-color: white;
+      transition: all 0.3s ease;
+    }
+
+    &:hover::after {
+      width: 100%;
+    }
+  }
+
+  &__wrapper {
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    gap: 1.2rem;
+
+    @include on-tablet {
+      height: 40%;
+    }
+
+    @include on-phone {
+      gap: 0.5rem;
+      flex-direction: column;
+    }
+  }
+}
+
+.main {
+  width: 100vw;
+  margin: auto;
+
+  &__content {
+    margin: auto;
+    width: 100%;
+    max-width: $content-max-width;
+    background-color: $color-blue-grey;
+
+    padding: 1rem 3rem;
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.3);
+
+    @include on-phone {
+      padding: 0.5rem 1rem;
+    }
+  }
+
+  &__title {
+    font-family: "Quicksand", sans-serif;
+    color: #fff;
+  }
+}
+
+.banner {
+  cursor: pointer;
+  height: 300px;
+  width: 100%;
+  max-width: $content-max-width;
+  margin: auto;
+  border-radius: 10px;
+  background-image: url("/images/banner2.webp");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  position: relative;
+
+  &__content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center; 
+  }
+
+  &__title {
+    @include set-font($font-rubic, 700, 40px);
+    background: linear-gradient(45deg, $color-light-purple, $color-light-blue);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  &__button {
+    @include set-font($font-national-park, 800, $button-font-size);
+    color: #fff;
+    width: 150px;
+    height: 50px;
+    border-radius: 50px;
+    background: linear-gradient(45deg, $color-light-purple, $color-light-blue);
+    box-shadow: 0 4px 0 darken($color-light-blue, 20);
+    transition: all 0.3s ease;
+
+    &:hover {
+      box-shadow: 0 6px 0 darken($color-light-blue, 20);
+    }
+  }
+}
+
+.footer {
+  width: 100vw;
+  color: #fff;
+
+  &__content {
+    max-width: $content-max-width;
+    background-color: $color-dark-grey;
+    margin: 0 auto;
+    padding: 2rem 3rem;
+    padding-bottom: 0;
+
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+
+    @include on-tablet {
+      padding: 2rem 1.5rem;
+    }
+  }
+
+  &__title {
+    @include set-font($font-national-park, 600, 20px);
+    color: rgb(200, 200, 200);
+    margin-bottom: 0.5rem;
+  }
+
+  &__navigation {
+    display: flex;
+    gap: 2rem;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+
+    @include on-tablet {
+      justify-content: center;
+    }
+  }
+
+  &__link {
+    text-decoration: none;
+    @include set-font($font-national-park, 400, 16px);
+    color: #fff;
+    position: relative;
+
+    &:hover::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -2px;
+      width: 100%;
+      height: 1px;
+      background-color: lighten($color-light-blue, 20);
+    }
+
+    &--block {
+      display: block;
+    }
+  }
+
+  &__icons {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 2rem;
+    flex-wrap: wrap;
+
+    @include on-tablet {
+      justify-content: center;
+    }
+  }
+
+  &__icon {
+    height: 32px;
+    width: auto;
+    object-fit: contain;
+    filter: grayscale(1) brightness(1.2);
+
+    &:hover {
+      filter: grayscale(0) brightness(1.4);
+    }
+  }
+
+  &__rights {
+    @include set-font($font-national-park, 300, 14px);
+    color: rgb(180, 180, 180);
+    text-align: center;
+    margin-top: 1rem;
+  }
+}
+
+.notification {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #4caf50;
+  color: white;
+  padding: 12px 20px;
+  border-radius: 8px;
+  font-size: 16px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  z-index: 9999;
+  animation: fade-in-out 5s ease forwards;
+}
+
+@keyframes fade-in-out {
+  0% {
+    opacity: 0;
+    transform: translateX(-50%) translateY(20px);
+  }
+  10% {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(-50%) translateY(-20px);
+  }
+}

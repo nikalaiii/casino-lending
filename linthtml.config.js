@@ -1,0 +1,5 @@
+{
+  "rules": {
+    "indent-style": false
+  }
+}
